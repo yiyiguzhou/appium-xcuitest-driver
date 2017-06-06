@@ -23,6 +23,14 @@ before_install:
   # code from http://stackoverflow.com/a/24600210/375688
   - sed -i '' 's/git@github.com:/https:\/\/github.com\//' /Users/travis/build/appium/appium-xcuitest-driver/.gitmodules
   - git submodule update --init --recursive
+
+  - pushd /Users/travis/build/appium/appium-xcuitest-driver/WebDriverAgent
+  - ./Scripts/bootstrap.sh -d
+  - mkdir -p Resources/WebDriverAgent.bundle
+  - xcodebuild build-for-testing -project /Users/travis/build/appium/appium-xcuitest-driver/WebDriverAgent/WebDriverAgent.xcodeproj -scheme WebDriverAgentRunner -destination id=68A04719-1E90-4FB4-A69A-290CD04B19B2 -configuration Debug IPHONEOS_DEPLOYMENT_TARGET=9.3 | xcpretty
+  - popd
+  - brew tap facebook/fb
+  - brew install fbsimctl --HEAD
 before_script:
   - node --version
   - npm install -g gulp
