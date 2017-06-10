@@ -1,4 +1,5 @@
-import { WebDriverAgent, BOOTSTRAP_PATH } from '../../lib/wda/webdriveragent';
+import { WebDriverAgent } from '../../lib/wda/webdriveragent';
+import { BOOTSTRAP_PATH } from '../../lib/wda/xcodebuild';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import path from 'path';
@@ -22,24 +23,24 @@ const customAgentPath = '/path/to/some/agent/WebDriverAgent.xcodeproj';
 
 describe('Constructor', () => {
   it('should have a default wda agent if not specified', () => {
-    let agent = new WebDriverAgent({}, fakeConstructorArgs);
-    agent.bootstrapPath.should.eql(BOOTSTRAP_PATH);
-    agent.agentPath.should.eql(defaultAgentPath);
+    let agent = new WebDriverAgent({}, fakeConstructorArgs, false);
+    agent.testrunner.bootstrapPath.should.eql(BOOTSTRAP_PATH);
+    agent.testrunner.agentPath.should.eql(defaultAgentPath);
   });
   it('should have custom wda bootstrap and default agent if only bootstrap specified', () => {
     let agent = new WebDriverAgent({}, _.defaults({
       bootstrapPath: customBootstrapPath,
-    }, fakeConstructorArgs));
-    agent.bootstrapPath.should.eql(customBootstrapPath);
-    agent.agentPath.should.eql(path.resolve(customBootstrapPath, 'WebDriverAgent.xcodeproj'));
+    }, fakeConstructorArgs), false);
+    agent.testrunner.bootstrapPath.should.eql(customBootstrapPath);
+    agent.testrunner.agentPath.should.eql(path.resolve(customBootstrapPath, 'WebDriverAgent.xcodeproj'));
   });
   it('should have custom wda bootstrap and agent if both specified', () => {
     let agent = new WebDriverAgent({}, _.defaults({
       bootstrapPath: customBootstrapPath,
       agentPath: customAgentPath,
-    }, fakeConstructorArgs));
-    agent.bootstrapPath.should.eql(customBootstrapPath);
-    agent.agentPath.should.eql(customAgentPath);
+    }, fakeConstructorArgs), false);
+    agent.testrunner.bootstrapPath.should.eql(customBootstrapPath);
+    agent.testrunner.agentPath.should.eql(customAgentPath);
   });
 });
 
