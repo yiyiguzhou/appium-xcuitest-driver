@@ -33,6 +33,7 @@ const GENERIC_CAPS = {
   noReset: true,
   maxTypingFrequency: 30,
   clearSystemFiles: true,
+  launchSystem: process.env.LAUNCH_SYSTEM || 'xcodebuild',
 };
 
 let simUICatalogApp = path.resolve('.', 'node_modules', 'ios-uicatalog', uiCatalogApp[1]);
