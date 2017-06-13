@@ -10,6 +10,10 @@ env:
     - CI_METRICS=1 TEST=functional/driver
     - CI_METRICS=1 TEST=functional/web
     - CI_METRICS=1 TEST=functional/long
+    - CI_METRICS=1 LAUNCH_SYSTEM=fbsimctl TEST=functional/basic
+    - CI_METRICS=1 LAUNCH_SYSTEM=fbsimctl TEST=functional/driver
+    - CI_METRICS=1 LAUNCH_SYSTEM=fbsimctl TEST=functional/web
+    - CI_METRICS=1 LAUNCH_SYSTEM=fbsimctl TEST=functional/long
 language:
 - objective-c
 os: osx
@@ -27,7 +31,7 @@ before_install:
   - pushd /Users/travis/build/appium/appium-xcuitest-driver/WebDriverAgent
   - ./Scripts/bootstrap.sh -d
   - mkdir -p Resources/WebDriverAgent.bundle
-  - xcodebuild build-for-testing -project /Users/travis/build/appium/appium-xcuitest-driver/WebDriverAgent/WebDriverAgent.xcodeproj -scheme WebDriverAgentRunner -destination id=68A04719-1E90-4FB4-A69A-290CD04B19B2 -configuration Debug IPHONEOS_DEPLOYMENT_TARGET=9.3 | xcpretty
+  # - xcodebuild build-for-testing -project /Users/travis/build/appium/appium-xcuitest-driver/WebDriverAgent/WebDriverAgent.xcodeproj -scheme WebDriverAgentRunner -destination id=68A04719-1E90-4FB4-A69A-290CD04B19B2 -configuration Debug IPHONEOS_DEPLOYMENT_TARGET=9.3 | xcpretty
   - popd
   - brew tap facebook/fb
   - brew install fbsimctl --HEAD
