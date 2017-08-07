@@ -15,20 +15,20 @@ env:
   #   - CI_METRICS=1 TEST=functional/long
 matrix:
   include:
-    - osx_image: xcode8.3
-      env: TEST=unit
-
-    - osx_image: xcode8.3
-      env: CI_METRICS=1 TEST=functional/basic
-
-    - osx_image: xcode8.3
-      env: CI_METRICS=1 TEST=functional/driver
-
-    - osx_image: xcode8.3
-      env: CI_METRICS=1 TEST=functional/web
-
-    - osx_image: xcode8.3
-      env: CI_METRICS=1 TEST=functional/long
+    # - osx_image: xcode8.3
+    #   env: TEST=unit
+    #
+    # - osx_image: xcode8.3
+    #   env: CI_METRICS=1 TEST=functional/basic
+    #
+    # - osx_image: xcode8.3
+    #   env: CI_METRICS=1 TEST=functional/driver
+    #
+    # - osx_image: xcode8.3
+    #   env: CI_METRICS=1 TEST=functional/web
+    #
+    # - osx_image: xcode8.3
+    #   env: CI_METRICS=1 TEST=functional/long
 
     - osx_image: xcode9
       env: CI_METRICS=1 TEST=functional/parallel

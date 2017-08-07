@@ -24,7 +24,7 @@ async function resetMapping (mapping) {
 }
 
 describe('XCUITestDriver - parallel Simulators', function () {
-  this.timeout(MOCHA_TIMEOUT);
+  this.timeout(MOCHA_TIMEOUT * 2);
 
   const sessionsMapping = new Map();
   const DEFAULT_WDA_PORT = 8100;
