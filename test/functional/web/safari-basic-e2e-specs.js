@@ -321,7 +321,7 @@ describe('Safari', function () {
         await driver.log('safariConsole');
       });
 
-      // there can be other tings logged, so check that the text is there somewhere
+      // there can be other things logged, so check that the text is there somewhere
       function checkTexts (logs, expectedTexts) {
         const logText = _.map(logs, (el) => el.text).join(',');
         for (let line of expectedTexts) {
@@ -335,6 +335,13 @@ describe('Safari', function () {
 
         const logs = await driver.log('safariConsole');
         checkTexts(logs, ['Hello from Appium', 'Loading guinea-pig page', 'Done']);
+      });
+      it('should get console logs for JS on the page with error', async function () {
+        // reload the page to execute JS
+        await driver.get(`${GUINEA_PIG_PAGE}?throwError=xcuitest-error`);
+
+        const logs = await driver.log('safariConsole');
+        checkTexts(logs, ['Hello from Appium', 'Loading guinea-pig page', 'Done', 'JavaScript Error: xcuitest-error']);
       });
       it('should get console logs for inserted JS', async function () {
         const strings = [
