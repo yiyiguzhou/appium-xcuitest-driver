@@ -194,25 +194,25 @@ describe('XCUITestDriver - basics', function () {
     });
   });
 
-  describe('geo location', function () {
-    it('should work on Simulator', async function () {
+  describe('geo location @skip-ci', function () {
+    it('should set valid location on simulator', async function () {
       if (process.env.TRAVIS || process.env.REAL_DEVICE) {
         // skip on Travis, since Appium process should have access to system accessibility
         // in order to run this method successfully
         return this.skip();
       }
-      await driver.setGeoLocation({latitude: '30.0001', longitude: '21.0002'}).should.not.be.rejected;
+      await driver.setGeoLocation('30.0001', '21.0002').should.not.be.rejected;
     });
   });
 
-  describe('shake', function () {
-    it('should work on Simulator', async function () {
+  describe('shake @skip-ci', function () {
+    it('should shake on simulator', async function () {
       if (process.env.TRAVIS || process.env.REAL_DEVICE) {
         // skip on Travis, since Appium process should have access to system accessibility
         // in order to run this method successfully
         return this.skip();
       }
-      await driver.mobileShake().should.not.be.rejected;
+      await driver.shake().should.not.be.rejected;
     });
   });
 

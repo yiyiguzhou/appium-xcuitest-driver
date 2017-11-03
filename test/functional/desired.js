@@ -78,7 +78,7 @@ const TOUCHIDAPP_CAPS = _.defaults({
 }, GENERIC_CAPS);
 
 function isIOS11 () {
-  return PLATFORM_VERSION === '11.0';
+  return PLATFORM_VERSION === '11.0' || PLATFORM_VERSION === '11.1';
 }
 
 export { UICATALOG_CAPS, UICATALOG_SIM_CAPS, SAFARI_CAPS, TESTAPP_CAPS,

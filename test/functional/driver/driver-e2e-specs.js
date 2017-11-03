@@ -16,8 +16,12 @@ const SIM_DEVICE_NAME = 'xcuitestDriverTest';
 const should = chai.should();
 chai.use(chaiAsPromised);
 
-let getNumSims = async () => {
+const getNumSims = async function () {
   return (await getDevices())[UICATALOG_SIM_CAPS.platformVersion].length;
+};
+
+const deleteDeviceRetry = async function (udid) {
+  await retryInterval(90, 1000, deleteDevice, udid);
 };
 
 describe('XCUITestDriver', function () {
@@ -39,7 +43,7 @@ describe('XCUITestDriver', function () {
 
     const sim = await getSimulator(caps.udid);
     await sim.shutdown();
-    await deleteDevice(caps.udid);
+    await deleteDeviceRetry(caps.udid);
   });
 
   afterEach(async () => {
@@ -76,7 +80,7 @@ describe('XCUITestDriver', function () {
     });
 
     it('should start and stop a session with only bundle id when no sim is running', async function () {
-      await killAllSimulators();
+      await retryInterval(10, 1000, killAllSimulators);
       let localCaps = Object.assign({}, caps, {bundleId: 'com.example.apple-samplecode.UICatalog'});
       localCaps.app = null;
       await driver.init(localCaps).should.not.eventually.be.rejected;
@@ -187,7 +191,7 @@ describe('XCUITestDriver', function () {
         simsAfter.should.equal(simsBefore);
 
         // cleanup
-        await deleteDevice(udid);
+        await deleteDeviceRetry(udid);
       });
 
       it('with udid booted: uses sim and leaves it afterwards', async () => {
@@ -218,7 +222,7 @@ describe('XCUITestDriver', function () {
 
         // cleanup
         await sim.shutdown();
-        await deleteDevice(udid);
+        await deleteDeviceRetry(udid);
       });
 
       it('with invalid udid: throws an error', async () => {
@@ -267,7 +271,7 @@ describe('XCUITestDriver', function () {
 
         // cleanup
         await sim.shutdown();
-        await deleteDevice(udid);
+        await deleteDeviceRetry(udid);
       });
     });
 

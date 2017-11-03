@@ -115,6 +115,10 @@ describe('Safari', function () {
           await spinTitleEquals(driver, 'Another Page: page 3', spinRetries);
         });
         it('should be able to tap on an element after scrolling, when the url bar is present', async function () {
+          if (process.env.PLATFORM_VERSION === '11.1') {
+            return this.skip();
+          }
+
           await driver.get(GUINEA_PIG_SCROLLABLE_PAGE);
           await driver.execute('mobile: scroll', {direction: 'down'});
 

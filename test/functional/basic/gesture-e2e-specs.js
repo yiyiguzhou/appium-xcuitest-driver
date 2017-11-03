@@ -63,11 +63,16 @@ describe('XCUITestDriver - gestures', function () {
           await exitModal('OK');
         });
         it('should tap on arbitrary coordinates', async function () {
-          let el1 = await driver.elementByAccessibilityId('Okay / Cancel');
-          let loc = await el1.getLocation();
+          let el = await driver.elementByAccessibilityId('Okay / Cancel');
+          let loc = await el.getLocation();
+          let size = await el.getSize();
+          let touchLoc = {
+            x: loc.x + size.width / 2,
+            y: loc.y + size.height / 2.
+          };
 
           let action = new wd.TouchAction(driver);
-          action.tap(loc);
+          action.tap(touchLoc);
           await action.perform();
 
           await exitModal('OK');
@@ -98,11 +103,15 @@ describe('XCUITestDriver - gestures', function () {
         await exitModal('Cancel');
       });
       it('should long press on arbitrary coordinates', async function () {
-        let el1 = await driver.elementByAccessibilityId('Okay / Cancel');
-        let loc = await el1.getLocation();
-
+        let el = await driver.elementByAccessibilityId('Okay / Cancel');
+        let loc = await el.getLocation();
+        let size = await el.getSize();
+        let touchLoc = {
+          x: loc.x + size.width / 2,
+          y: loc.y + size.height / 2.
+        };
         let action = new wd.TouchAction(driver);
-        action.press(loc).wait(500).release();
+        action.press(touchLoc).wait(500).release();
         await action.perform();
 
         await exitModal('OK');

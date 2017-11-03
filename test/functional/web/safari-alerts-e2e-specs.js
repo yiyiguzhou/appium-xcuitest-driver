@@ -61,7 +61,12 @@ describe('safari - alerts', function () {
     await driver.alertText()
       .should.be.rejectedWith(/An attempt was made to operate on a modal dialog when one was not open/);
   });
-  it('should set text of prompt', async () => {
+  it('should set text of prompt', async function () {
+    if (process.env.PLATFORM_VERSION === '11.1') {
+      // we can't get the elements of a prompt, so no way to set the text
+      return this.skip();
+    }
+
     let el = await driver.elementById('prompt1');
     await el.click();
     await driver.alertKeys('of course!');
