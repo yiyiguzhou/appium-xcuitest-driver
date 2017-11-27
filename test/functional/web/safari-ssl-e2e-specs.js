@@ -5,7 +5,7 @@ import _ from 'lodash';
 import B from 'bluebird';
 import { killAllSimulators } from 'appium-ios-simulator';
 import { HOST, PORT, MOCHA_TIMEOUT } from '../helpers/session';
-import { SAFARI_CAPS } from '../desired';
+import { SAFARI_CAPS } from './desired';
 import { startServer } from '../../..';
 import https from 'https';
 

@@ -5,7 +5,7 @@ import wd from 'wd';
 import _ from 'lodash';
 import B from 'bluebird';
 import { HOST, PORT, MOCHA_TIMEOUT } from '../helpers/session';
-import { SAFARI_CAPS } from '../desired';
+import { SAFARI_CAPS } from './desired';
 import { spinTitle, spinTitleEquals, spinWait, GUINEA_PIG_PAGE,
          PHISHING_END_POINT } from './helpers';
 

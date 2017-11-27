@@ -4,7 +4,7 @@ import chaiAsPromised from 'chai-as-promised';
 import wd from 'wd';
 import _ from 'lodash';
 import { HOST, PORT, MOCHA_TIMEOUT } from '../helpers/session';
-import { SAFARI_CAPS } from '../desired';
+import { SAFARI_CAPS } from './desired';
 import { spinTitleEquals, GUINEA_PIG_PAGE, GUINEA_PIG_SCROLLABLE_PAGE,
          GUINEA_PIG_APP_BANNER_PAGE } from './helpers';
 import { killAllSimulators } from 'appium-ios-simulator';

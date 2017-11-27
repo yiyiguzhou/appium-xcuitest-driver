@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { SAFARI_CAPS } from '../desired';
+import { SAFARI_CAPS } from './desired';
 import { initSession, deleteSession, MOCHA_TIMEOUT } from '../helpers/session';
 import { GUINEA_PIG_PAGE } from './helpers';
 

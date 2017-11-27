@@ -65,10 +65,6 @@ const UICATALOG_SIM_CAPS = _.defaults({
 }, GENERIC_CAPS);
 delete UICATALOG_SIM_CAPS.noReset; // do not want to have no reset on the tests that use this
 
-const SAFARI_CAPS = _.defaults({
-  browserName: 'Safari',
-}, GENERIC_CAPS, REAL_DEVICE_CAPS);
-
 const TESTAPP_CAPS = _.defaults({
   app: simTestAppApp,
 }, GENERIC_CAPS);
@@ -81,5 +77,5 @@ function isIOS11 () {
   return PLATFORM_VERSION === '11.0' || PLATFORM_VERSION === '11.1';
 }
 
-export { UICATALOG_CAPS, UICATALOG_SIM_CAPS, SAFARI_CAPS, TESTAPP_CAPS,
+export { UICATALOG_CAPS, UICATALOG_SIM_CAPS, TESTAPP_CAPS, GENERIC_CAPS,
          PLATFORM_VERSION, TOUCHIDAPP_CAPS, DEVICE_NAME, isIOS11 };
