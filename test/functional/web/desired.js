@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 const SAFARI_CAPS = _.defaults({
   browserName: 'Safari',
-  showXcodeLog: true,
+  showXcodeLog: false,
 }, GENERIC_CAPS, REAL_DEVICE_CAPS);
 
 export { SAFARI_CAPS, PLATFORM_VERSION };
