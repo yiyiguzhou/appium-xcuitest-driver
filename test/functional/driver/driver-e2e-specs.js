@@ -31,6 +31,10 @@ describe('XCUITestDriver', function () {
 
   let server, driver;
   before(async () => {
+    await retryInterval(10, 1000, killAllSimulators);
+    await retryInterval(10, 1000, killAllSimulators);
+    await retryInterval(10, 1000, killAllSimulators);
+
     driver = wd.promiseChainRemote(HOST, PORT);
     server = await startServer(PORT, HOST);
 
@@ -81,6 +85,8 @@ describe('XCUITestDriver', function () {
 
     it('should start and stop a session with only bundle id when no sim is running', async function () {
       await retryInterval(10, 1000, killAllSimulators);
+      await retryInterval(10, 1000, killAllSimulators);
+      await retryInterval(10, 1000, killAllSimulators);
       let localCaps = Object.assign({}, caps, {bundleId: 'com.example.apple-samplecode.UICatalog'});
       localCaps.app = null;
       await driver.init(localCaps).should.not.eventually.be.rejected;
@@ -93,7 +99,9 @@ describe('XCUITestDriver', function () {
     });
 
     it('should fail to start and stop a session if unknown bundle id used when no sim is running', async function () {
-      await killAllSimulators();
+      await retryInterval(10, 1000, killAllSimulators);
+      await retryInterval(10, 1000, killAllSimulators);
+      await retryInterval(10, 1000, killAllSimulators);
       let localCaps = Object.assign({}, caps, {bundleId: 'io.blahblahblah.blah'});
       localCaps.app = null;
       await driver.init(localCaps).should.eventually.be.rejected;
